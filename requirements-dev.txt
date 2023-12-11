@@ -1,5 +1,0 @@
-pytest==6.2.5
-flake8==3.9.2
-black==21.12b0  # Optional: Code formatter
-mypy==0.910  # Optional: Static type checker
-coverage==5.5  # Optional: Test coverage
