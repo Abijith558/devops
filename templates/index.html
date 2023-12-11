@@ -1,0 +1,110 @@
+<!-- HTML Document for the To-Do List Website -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Set character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Set page title and link stylesheet -->
+    <title>To-Do List App</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    <!-- Header with navigation links -->
+    <header>
+        <nav>
+            <div class="container">
+                <!-- Navigation links -->
+                <a href="#home" class="cta-button">Home</a>
+                <a href="#about" class="cta-button">About Us</a>
+                <a href="#tasks" class="cta-button">Tasks</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero section with an image and call-to-action button -->
+    <section id="home" class="hero">
+        <div class="container">
+            <img src="/static/img/Logo.img.png" alt="Your Image">
+            <h1>"Stay Organized with our To-Do List App."</h1>
+            <a href="#tasks" class="cta-button">Explore Tasks</a>
+        </div>
+    </section>
+
+    <!-- About section with information about the to-do list app -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <!-- Introduction to the to-do list app -->
+                <p>Welcome to our To-Do List App, your digital companion for staying organized and boosting productivity.
+                    Whether you're managing daily tasks, setting goals, or collaborating with a team, our app makes it easy to
+                    prioritize and accomplish what matters most. Experience seamless task management and enjoy the satisfaction
+                    of checking off completed items from your to-do list.</p>
+                    
+            </div>
+        </div>
+    </section>
+
+    <!-- Tasks section with two horizontal sections for text and images -->
+    <section id="tasks" class="tasks">
+        <div class="container">
+            <h2>Tasks</h2>
+            <!-- Section 1: Task Section with Text -->
+            <div class="task-section">
+                <h3>Personal Tasks</h3>
+                <p>Stay organized with our personal task management feature. Create, edit, and delete tasks effortlessly.
+                    Set due dates, add descriptions, and mark tasks as completed. Your to-do list, your way.</p>
+            </div>
+            <!-- Section 2: Task Section with Image -->
+            <div class="task-section">
+                <img src="/static/img/task_image.jpg" alt="Your Task Image">
+                <h3>Team Collaboration</h3>
+                <p>Collaborate seamlessly with your team using our team task management feature.
+                    Share tasks, assign responsibilities, and track progress collaboratively.
+                    Enhance team efficiency and achieve collective goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Note Taking App Section -->
+    <section id="note-taking-app" class="note-taking-app">
+        <div class="container">
+            <h2>Note Taking App</h2>
+            <form action="/add_note" method="POST" class="mt-3">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Note</button>
+            </form>
+            <ul class="list-group mt-4">
+                {% for note in notes %}
+                    <li class="list-group-item">
+                        <strong>{{ note.title }}</strong>
+                        <p>{{ note.content }}</p>
+                        <a href="/edit_note/{{ note.id }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/delete_note/{{ note.id }}" class="btn btn-danger btn-sm">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer section with copyright information -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 To-Do List App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
