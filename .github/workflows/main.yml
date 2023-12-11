@@ -1,0 +1,38 @@
+name: CI/CD with SonarCloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarcloud-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Adjust the Python version as needed
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.sonar/cache
+          key: sonar-${{ runner.os }}-${{ hashFiles('**/*.py') }}
+          restore-keys: |
+            sonar-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Adjust as per your project setup
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ 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}}
+          SONAR_TOKEN: ${{ ed15aaf2bf13aade3626cf10190d7fb8d9f50090}}
