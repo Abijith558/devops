@@ -3,17 +3,13 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.9
+      python: 3.9  # Use one of the supported versions (3.7, 3.8, 3.9)
+
     commands:
       - python -m pip install --upgrade pip
       - pip install -r requirements.txt
+      - pip install -r requirements-dev.txt  # Install testing dependencies
 
   build:
     commands:
-      - flask test  # Replace with your command to run tests
-      - flask run &  # Replace with your command to start the Flask application
-      - sleep 3  # Wait for the Flask app to start (adjust as needed)
-      - curl http://localhost:5000/  # Replace with your command to test the running app
-
-artifacts:
-  files: '**/*'
+      - pytest
