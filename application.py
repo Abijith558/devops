@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
 
 application = Flask(__name__)
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 db = SQLAlchemy(application)
+
+# Add the following line to create the engine with additional arguments
+engine = create_engine('sqlite:///mydatabase.db', connect_args={'check_same_thread': False}, module=sqlite, module_args={'version': '3.8.3'})
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,4 +49,4 @@ if __name__ == '__main__':
     with application.app_context():
         db.create_all()
     application.run(debug=True)
-
+    application.run(host='0.0.0.0', port=8000)
