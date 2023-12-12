@@ -69,7 +69,7 @@ mypy-boto3-stepfunctions==1.28.36
 mypy-boto3-sts==1.28.58
 mypy-boto3-xray==1.28.64
 mysql-connector-python==8.2.0
-networkx==3.2.1
+networkx==2.6.3
 numpy==1.26.2
 packaging==23.2
 pathspec==0.10.1
